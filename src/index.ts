@@ -5,7 +5,7 @@ import { Games } from "./services/actions/game/main";
 import { Players } from "./services/actions/player/main";
 import { nowInUtc } from "./utils/index";
 
-class Main {
+export class Main {
   static async run() {
     const games = new Games();
     const players = new Players();

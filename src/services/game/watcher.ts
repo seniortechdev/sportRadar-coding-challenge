@@ -1,5 +1,5 @@
 import { GameWatcher } from "./main";
-import { nowInUtc } from "@utils/index";
+import { nowInUtc } from "../../utils/index";
 import { differenceInMinutes } from "date-fns";
 
 class Watcher {

@@ -16,12 +16,10 @@ export class Games {
 
   public async getGamesToday(): Promise<Game[]> {
     const today = format(new Date(), "yyyy-MM-dd");
-    // use 2022020806 for testing
-    const testDate = format(new Date("2022-02-08"), "yyyy-MM-dd");
-    console.log("Getting games for", testDate);
+    console.log("Getting games for", today);
     try {
       const res = await axios.get(
-        `https://statsapi.web.nhl.com/api/v1/schedule?date=${testDate}`
+        `https://statsapi.web.nhl.com/api/v1/schedule?date=${today}`
       );
       if (res && res.status === 200) {
         if (res.data.dates.length > 0) {

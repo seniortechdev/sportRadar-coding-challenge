@@ -1,6 +1,6 @@
 import { ParsedPlay, ParsedPlayStats } from "@interfaces/Watcher";
-import { StatementGenerator, nowInUtc } from "@utils/index";
-import pool from "@config/db/db";
+import { StatementGenerator, nowInUtc } from "../../../utils/index";
+import pool from "../../../config/db/db";
 
 const insertPlay = async (
   plays: ParsedPlay[]

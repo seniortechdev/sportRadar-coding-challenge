@@ -1,6 +1,6 @@
 import axios from "axios";
-import { EventTypes } from "@utils/watcherUtils";
-import { PlayerTypes } from "@utils/playerUtils";
+import { EventTypes } from "../../utils/watcherUtils";
+import { PlayerTypes } from "../../utils/playerUtils";
 import { ParsedPlay, ParsedPlayStats, Watcher } from "@interfaces/Watcher";
 import { insertPlay, insertPlayStats } from "../actions/db/watcherActions";
 
