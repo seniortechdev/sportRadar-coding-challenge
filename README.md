@@ -8,7 +8,7 @@ The NHL Data Pipeline is a project that ingests live NHL game data, stores it in
 
 - Ingest data process: This process continually watches for game status changes and ingests game data when games are live. The game data consists of information about the players, such as player ID, player name, team ID, team name, player age, player number, player position, assists, goals, hits, points, penalty minutes, and opponent team.
 
-- Data retrieval process: This process retrieves data from the API and makes it accessible for further analysis by storing it in the database.
+- Data retrieval process: This process retrieves data from the database and makes it accessible for further analysis.
 
 ## Requirements
 
@@ -21,7 +21,7 @@ The NHL Data Pipeline is a project that ingests live NHL game data, stores it in
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/seniortechdev/nhl-data-pipeline.git
+git clone https://github.com/[YOUR-USERNAME]/nhl-data-pipeline.git
 ```
 
 2. Change into the project directory:
@@ -58,7 +58,6 @@ Alternatively, you can run the setup process with the following command:
 ```bash
 yarn run reset
 ```
-This will use the .env file to reset the exiting database by dropping it's schema, tables and all then setting it up againg using the .sql file provided iin the data folder.
 
 6. Start the ingest data process:
 
@@ -66,6 +65,15 @@ This will use the .env file to reset the exiting database by dropping it's schem
 yarn run dev
 ```
 
+7. Start the data retrieval process for specific games:
+
+```bash
+yarn run watch GAME-ID || yarn run watch GAME-ID DATE
+```
+
+```bash
+
 ## Usage
 
 The NHL Data Pipeline is designed to run continuously in the background, continually watching for game status changes and ingesting game data when games are live. The ingested game data is stored in a PostgreSQL database, and can be retrieved for further analysis through the data retrieval process.
+```
