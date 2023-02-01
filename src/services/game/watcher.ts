@@ -2,7 +2,7 @@ import { GameWatcher } from "./main";
 import { nowInUtc } from "../../utils/index";
 import { differenceInMinutes } from "date-fns";
 
-class Watcher {
+export class Watcher {
   static initializedGame: GameWatcher;
   static timeDelay: number = 1000 * 60 * 5;
 
@@ -22,14 +22,20 @@ class Watcher {
       this.initializedGame = new GameWatcher(gameId);
       console.log(`Watching game with id ${gameId}`);
     } else {
-      setTimeout(() => this.watchGame(gameId, startTime), this.timeDelay);
+      setTimeout(
+        () => this.watchGame(gameId, startTime),
+        this.timeDelay
+      ).unref();
     }
 
     if (this.initializedGame) {
       this.timeDelay = 1000 * 60 * 1;
       this.initializedGame.insertPlays();
     } else {
-      setTimeout(() => this.watchGame(gameId, startTime), this.timeDelay);
+      setTimeout(
+        () => this.watchGame(gameId, startTime),
+        this.timeDelay
+      ).unref();
     }
 
     // exit if game has ended
@@ -40,7 +46,10 @@ class Watcher {
 
     // if game has not started, wait 5 minutes and try again
     if (timeDiff < 5) {
-      setTimeout(() => this.watchGame(gameId, startTime), this.timeDelay);
+      setTimeout(
+        () => this.watchGame(gameId, startTime),
+        this.timeDelay
+      ).unref();
     }
   }
 }

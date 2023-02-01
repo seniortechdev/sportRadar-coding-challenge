@@ -63,7 +63,7 @@ export class Players {
     if (gameIds.length > 1) {
       setTimeout(() => {
         this.insertPlayersWithDelay(gameIds.slice(1), delay);
-      }, delay);
+      }, delay).unref();
     }
     return Promise.resolve();
   }

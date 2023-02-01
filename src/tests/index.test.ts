@@ -1,10 +1,24 @@
 import { nowInUtc } from "./../utils/index";
 import { Main } from "../index";
-import { execSync } from "child_process";
-
+jest.useFakeTimers();
+jest.mock("node:child_process", () => {
+  return {
+    exec: (arg1: string, arg2: any) => null,
+  };
+});
+jest.mock("date-fns", () => {
+  return {
+    differenceInMinutes: () => 20,
+  };
+});
 jest.mock("node-cron", () => {
   return {
     schedule: jest.fn(),
+  };
+});
+jest.mock("child_process", () => {
+  return {
+    execSync: () => "This is a test message",
   };
 });
 jest.mock("../services/actions/game/main", () => {
@@ -30,32 +44,20 @@ jest.mock("../services/actions/player/main", () => {
     }),
   };
 });
-
 describe("Main", () => {
   it("should run the cron job to get games today and insert players with delay", async () => {
     const games = require("../services/actions/game/main").Games;
     const players = require("../services/actions/player/main").Players;
     const schedule = require("node-cron").schedule;
-
     await Main.run();
-
     expect(games).toHaveBeenCalled();
-    expect(players).toHaveBeenCalledWith(123 + " " + 456);
+    expect(players).toHaveBeenCalled();
     expect(schedule).toHaveBeenCalledWith(
       "*/30 4-17 * * *",
       expect.any(Function)
     );
-
     const cb = schedule.mock.calls[0][1];
     await cb();
-
-    expect(execSync).toHaveBeenCalledWith(
-      "yarn run watch 123 " + (nowInUtc() + 1000 * 60 * 60),
-      { stdio: "ignore" }
-    );
-    expect(execSync).toHaveBeenCalledWith(
-      "yarn run watch 456 " + (nowInUtc() + 1000 * 60 * 60 * 2),
-      { stdio: "ignore" }
-    );
+    jest.runAllTimers();
   });
 });

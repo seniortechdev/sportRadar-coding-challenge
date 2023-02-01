@@ -40,7 +40,7 @@ export class Main {
               );
             }
           }
-        }, 2000 * 2 * gameIds.length);
+        }, 2000 * 2 * gameIds.length).unref();
       }
     });
   }
