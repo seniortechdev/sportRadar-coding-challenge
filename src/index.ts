@@ -11,7 +11,7 @@ class Main {
     const players = new Players();
 
     // cron job to run every 30 minutes from 4am to 5pm
-    cron.schedule("*/1 4-17 * * *", async () => {
+    cron.schedule("*/30 4-17 * * *", async () => {
       await games.getGamesToday();
       if (games.gamesToday.length > 0) {
         const gameIds = games.gamesToday.map((game) => game.gamePk);
