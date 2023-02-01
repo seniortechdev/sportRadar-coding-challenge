@@ -8,7 +8,7 @@ The NHL Data Pipeline is a project that ingests live NHL game data, stores it in
 
 - Ingest data process: This process continually watches for game status changes and ingests game data when games are live. The game data consists of information about the players, such as player ID, player name, team ID, team name, player age, player number, player position, assists, goals, hits, points, penalty minutes, and opponent team.
 
-- Data retrieval process: This process retrieves data from the database and makes it accessible for further analysis.
+- Data retrieval process: This process retrieves data from the API and makes it accessible for further analysis by storing it in the database.
 
 ## Requirements
 
